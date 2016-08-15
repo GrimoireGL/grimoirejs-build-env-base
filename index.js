@@ -24,7 +24,7 @@ export function readFileAsync(filePath) {
 export async function templateAsync(filePath, args) {
     const template = await readFileAsync(filePath);
     return handleBars.compile(template, {
-        noEscape: false
+        noEscape: true
     })(args);
 }
 
