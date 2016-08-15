@@ -23,7 +23,9 @@ export function readFileAsync(filePath) {
 
 export async function templateAsync(filePath, args) {
     const template = await readFileAsync(filePath);
-    return handleBars.compile(template)(args);
+    return handleBars.compile(template, {
+        noEscape: false
+    })(args);
 }
 
 export function copyDirAsync(src, dest, clobber = false) {
