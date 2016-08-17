@@ -28,10 +28,16 @@ export async function templateAsync(filePath, args) {
     })(args);
 }
 
-export function copyDirAsync(src, dest, clobber = false) {
+export function copyDirAsync(src, dest, clobber = false, filter) {
+    if (!filter) {
+        filter = () => {
+            return true;
+        };
+    }
     return new Promise((resolve, reject) => {
         fse.copy(src, dest, {
-            clobber: clobber
+            clobber: clobber,
+            filter: filter
         }, (err) => {
             if (err) {
                 reject(err);
@@ -43,7 +49,7 @@ export function copyDirAsync(src, dest, clobber = false) {
 
 export function writeFileAsync(filePath, content) {
     return new Promise((resolve, reject) => {
-        fs.writeFile(filePath, content, (err) => {
+        fse.outputFile(filePath, content, (err) => {
             if (err) reject(err);
             resolve();
         });

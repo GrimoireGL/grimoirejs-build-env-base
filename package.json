@@ -1,6 +1,6 @@
 {
   "name": "grimoirejs-build-env-base",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "The common files to build grimoirejs or bundling.",
   "main": "./lib/index.js",
   "scripts": {
